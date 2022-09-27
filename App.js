@@ -1,5 +1,5 @@
 import React from 'react'
-import {View,Text,TextInput,Button} from 'react-native'
+import {View,Text,TextInput,Button,TouchableOpacity} from 'react-native'
 
 class App extends React.Component{
   state = {
@@ -20,10 +20,14 @@ class App extends React.Component{
   }
   renderTodo = ()=>{
     return this.state.todo.map(t => {
-       return ( <Text 
-        key={t}
+       return ( 
+        <TouchableOpacity key={t}>
+         <Text 
+         style={styles.todo}
         onPress={()=>{this.deleteTodo(t)}}
-        >{t}</Text>)
+        >{t}</Text>
+        </TouchableOpacity>
+       )
       })
   }
   render(){
@@ -40,7 +44,9 @@ class App extends React.Component{
       title="Add Todo"
       onPress={this.addTodo}
       />
-      <Text>{this.renderTodo()}</Text>
+     <View style={{ marginTop:40 }} >
+       <Text>{this.renderTodo()}</Text>
+     </View>
     </View>
   </View>
     )
@@ -68,6 +74,10 @@ const styles = {
     fontSize:30,
     color:'green',
     fontWeight:"bold"
+  },
+  todo:{
+    fontSize:'24',
+    green:'green'
   }
  }
 export default App;
